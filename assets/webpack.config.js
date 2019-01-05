@@ -29,15 +29,27 @@ module.exports = (env, options) => ({
         },
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+            { loader: 'css-loader', options: {} },
+            { loader: 'sass-loader', options: {} },
+        ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: '../fonts/'
+            }
+        }]
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([
-      { from: 'static/', to: '../' },
-    ]),
+    new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
   ],
 });

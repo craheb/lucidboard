@@ -1,0 +1,11 @@
+<%= if 1 == length(@pile.cards) do %>
+    <%= render(BoardView, "card.html", card: hd(@pile.cards)) %>
+<% else %>
+    <div class="card pile">
+        <%= render(BoardView, "card.html", card: hd(@pile.cards)) %>
+        <footer class="card-footer">
+            <a href="#" class="card-footer-item"><%= fa("angle-left") %></a>
+            <a href="#" class="card-footer-item"><%= fa("angle-right") %></a>
+        </footer>
+    </div>
+<% end %>

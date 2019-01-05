@@ -1,16 +1,12 @@
-<h1><%= @board.title %></h1>
+<h1 class="title"><%= @board.title %></h1>
 
-<%= for col <- @board.columns do %>
-    <h2><%= col.title %></h2>
-    <ul>
-    <%= for pile <- col.piles do %>
-        <li><em>I M A Pile</em>
-        <ul>
-        <%= for card <- pile.cards do %>
-            <li><%= card.body %></li>
-        <% end %>
-        </ul>
-        </li>
+<div class="columns">
+    <%= for col <- @board.columns do %>
+        <div class="column">
+            <h2 class="subtitle"><%= col.title %></h2>
+            <%= for pile <- col.piles do %>
+                <%= render(BoardView, "pile.html", pile: pile) %>
+            <% end %>
+        </div>
     <% end %>
-    </ul>
-<% end %>
+</div>
