@@ -19,4 +19,5 @@ a:hover .card { background-color: $light; }
 .card-footer { border-top: none; background-color: transparent; }
 .pile { @extend .has-background-light; }
 .card-count { color: $grey-light; }
+form .field:not(:last-child) { margin-bottom: 2em; }
 // .card-footer a { color: }

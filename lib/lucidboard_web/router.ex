@@ -21,7 +21,10 @@ defmodule LucidboardWeb.Router do
 
     get "/boards", DashboardController, :index
 
-    scope "/board/:id" do
+    get "/create-board", BoardController, :create_form
+    post "/create-board", BoardController, :create
+
+    scope "/boards/:id" do
       get "/", BoardController, :index
     end
   end

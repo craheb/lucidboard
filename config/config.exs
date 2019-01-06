@@ -17,6 +17,12 @@ config :lucidboard, LucidboardWeb.Endpoint,
   render_errors: [view: LucidboardWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Lucidboard.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :lucidboard, :templates, %{
+  "Retrospective" => %{
+    columns: ["What Went Well", "What Didn't Go Well", "Propouts"]
+  }
+}
+
 config :phoenix, :json_library, Jason
 
 # Configures Elixir's Logger

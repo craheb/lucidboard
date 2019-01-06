@@ -1,6 +1,12 @@
 <div style="max-width: 40em; margin: 0 auto;">
 
+<a href="<%= Routes.board_path(@conn, :create) %>"
+   class="button is-primary is-pulled-right">
+  <%= fas("plus") %><span>Create Board</span>
+</a>
+
 <h2 class="title">All Lucidboards</h2>
+
 <%= for board <- @boards do %>
   <a href="<%= Routes.board_path(@conn, :index, board.id) %>">
     <div class="card cardspacer">

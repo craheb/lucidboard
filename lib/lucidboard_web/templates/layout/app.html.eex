@@ -65,16 +65,14 @@
               <div class="field is-grouped">
                 <p class="control">
                   <a class="button" href="#">
-                    <%= fas("biohazard") %>
+                    <%= fas("carrot") %>
                     <span>Monkeys!</span>
                   </a>
                 </p>
                 <p class="control">
-                  <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.7.2/bulma-0.7.2.zip">
-                    <span class="icon">
-                      <i class="fas fa-download"></i>
-                    </span>
-                    <span>Download</span>
+                  <a class="button is-primary" href="#">
+                    <%= fas("glass-whiskey") %>
+                    <span>Drink</span>
                   </a>
                 </p>
               </div>
