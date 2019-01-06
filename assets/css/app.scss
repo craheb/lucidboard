@@ -7,11 +7,11 @@ $fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts";
   src: url(/fonts/Arsenal-Regular.ttf) format("truetype");
 }
 
-@import "../node_modules/bulmaswatch/journal/variables";
+@import "../node_modules/bulmaswatch/spacelab/variables";
 $family-primary: "Arsenal";
 $family-heading: "Arsenal";
 @import "bulma";
-@import "../node_modules/bulmaswatch/journal/overrides";
+@import "../node_modules/bulmaswatch/spacelab/overrides";
 
 main { padding-top: 2em; }
 .cardspacer { margin-bottom: 1em; }
@@ -19,3 +19,5 @@ main { padding-top: 2em; }
 a:hover .card { background-color: $light; }
 .pile { @extend .has-background-light; }
 form .field:not(:last-child) { margin-bottom: 2em; }
+
+.mainhero { @extend .is-black; }

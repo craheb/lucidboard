@@ -77,7 +77,14 @@ defmodule Lucidboard.Seeds do
             ),
             Pile.new(
               pos: 2,
-              cards: [Card.new(pos: 0, body: "that whole free market thing")]
+              cards: [
+                Card.new(pos: 0, body: ~s/"Capitalism"/),
+                Card.new(pos: 1, body: "that whole free market thing")
+              ]
+            ),
+            Pile.new(
+              pos: 3,
+              cards: [Card.new(pos: 0, body: "projected habitability")]
             )
           ]
         ),

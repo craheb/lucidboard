@@ -9,89 +9,11 @@
     <link href="<%= Routes.static_path(@conn, "/fonts/Arsenal-Regular.ttf") %>">
   </head>
   <body>
-    <header>
-      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <%= render("header/header.html", assigns) %>
 
-        <div class="navbar-brand icon-padder">
-          <a class="navbar-item title" href="/">
-            <%= fas("bolt") %>
-            <span>Lucidboard</span>
-          </a>
-        </div>
-        <div class="navbar-burger burger" data-target="navbarLucidboard">
-          <%#
-          <span></span>
-          <span></span>
-          <span></span>
-          %>
-        </div>
+    <%= Map.get(assigns, :inner_layout)
+          || render(@view_module, @view_template, assigns) %>
 
-        <div id="navbarLucidboard" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="/">
-              Home
-            </a>
-            <a class="navbar-item" href="/create-board">
-              Create Board
-            </a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-                Docs
-              </a>
-              <div class="navbar-dropdown is-boxed">
-                <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-                  Overview
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
-                  Modifiers
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-                  Columns
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-                  Layout
-                </a>
-                <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-                  Form
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-                  Elements
-                </a>
-                <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-                  Components
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="field is-grouped">
-                <p class="control">
-                  <a class="button" href="https://impulsedetroit.net/">
-                    <%= fas("carrot") %>
-                    <span>Impulse Detroit</span>
-                  </a>
-                </p>
-                <p class="control">
-                  <a class="button is-primary" href="https://www.laphroaig.com/">
-                    <%= fas("glass-whiskey") %>
-                    <span>Laphroaig</span>
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </nav>
-    </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

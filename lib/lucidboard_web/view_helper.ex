@@ -3,16 +3,17 @@ defmodule LucidboardWeb.ViewHelper do
   import Phoenix.HTML, only: [raw: 1]
 
   @doc "Create a font-awesome icon by name"
-  def fas(name, class \\ []), do: fa("fas", name, class)
+  def fas(name, class \\ nil), do: fa("fas", name, class)
 
-  def fab(name, class \\ []), do: fa("fab", name, class)
+  def fab(name, class \\ nil), do: fa("fab", name, class)
 
   def show_card_count(column) do
-    count = Enum.reduce(column.piles, 0, fn pile, acc ->
+    count =
+      Enum.reduce(column.piles, 0, fn pile, acc ->
         acc + length(pile.cards)
       end)
 
-    "#{count} card" <> if count == 1, do: "", else: "s"
+    "#{count} card#{if count != 1, do: "s"}"
   end
 
   def card_body_size_by_copy(body) do
@@ -25,19 +26,14 @@ defmodule LucidboardWeb.ViewHelper do
     end
   end
 
-  defp fa(family, name, class) when is_binary(class) do
-    fa(family, name, [class])
-  end
-
   defp fa(family, name, class) do
-    class =
-      Enum.join(["icon"] ++ class, " ")
+    extra = if is_nil(class), do: [], else: [class]
+    full_class = Enum.join(["icon"] ++ extra, " ")
 
-    """
-    <span class="#{class}">
+    raw("""
+    <span class="#{full_class}">
       <i class="#{family} fa-#{name}"></i>
     </span>
-    """
-    |> raw()
+    """)
   end
 end

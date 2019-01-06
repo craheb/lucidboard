@@ -31,6 +31,7 @@ defmodule LucidboardWeb do
     quote do
       use Phoenix.View,
         root: "lib/lucidboard_web/templates",
+        pattern: "**/*",
         namespace: LucidboardWeb
 
       # Import convenience functions from controllers
