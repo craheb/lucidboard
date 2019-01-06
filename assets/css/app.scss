@@ -1,12 +1,20 @@
-/* This file is for your main application css. */
 $fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
 
-@import "../node_modules/bulmaswatch/superhero/variables";
+@import "../node_modules/bulmaswatch/journal/variables";
 @import "bulma";
-@import "../node_modules/bulmaswatch/superhero/overrides";
-
-@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../node_modules/bulmaswatch/journal/overrides";
 
 main { padding-top: 8em; }
-.card { margin-bottom: 1em; }
+.cardspacer { margin-bottom: 1em; }
+.pile { padding: 0.2em 0.2em 0 0.2em; }
+
+a:hover .card { background-color: $light; }
+.card-footer { border-top: none; background-color: transparent; }
+.card-footer-item {}
+.pile { @extend .has-background-light; }
+.add-card { display: block; text-align: right; }
+// .add-card:hover { @extend .has-background-light; }
+.card-count { color: $grey-light; }
+// .card-footer a { color: }
