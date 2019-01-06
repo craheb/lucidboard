@@ -1,3 +1,6 @@
-alias Lucidboard.{Repo, Seeds}
+alias Lucidboard.{Repo, Seeds, User}
 
-Repo.insert!(Seeds.board())
+user = User.new(name: "bob")
+
+Repo.insert!(Seeds.board(user))
+Repo.insert!(Seeds.board2(user))

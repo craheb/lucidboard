@@ -5,19 +5,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Lucidboard</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Arsenal|Volkhov" rel="stylesheet">
   </head>
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-        </nav>
-        <!--
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-        -->
-      </section>
+      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+
+        <div class="navbar-brand icon-padder">
+          <a class="navbar-item title" href="/">
+            <%= fas("bolt") %>
+            <span>Lucidboard</span>
+          </a>
+        </div>
+        <div class="navbar-burger burger" data-target="navbarLucidboard">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div id="navbarLucidboard" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">
+              Home
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
+                Docs
+              </a>
+              <div class="navbar-dropdown is-boxed">
+                <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
+                  Overview
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+                  Modifiers
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+                  Columns
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+                  Layout
+                </a>
+                <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+                  Form
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+                  Elements
+                </a>
+                <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+                  Components
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <a class="button" href="#">
+                    <%= fas("biohazard") %>
+                    <span>Monkeys!</span>
+                  </a>
+                </p>
+                <p class="control">
+                  <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.7.2/bulma-0.7.2.zip">
+                    <span class="icon">
+                      <i class="fas fa-download"></i>
+                    </span>
+                    <span>Download</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </nav>
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

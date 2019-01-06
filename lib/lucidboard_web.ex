@@ -41,6 +41,7 @@ defmodule LucidboardWeb do
 
       import LucidboardWeb.ErrorHelpers
       import LucidboardWeb.Gettext
+      import LucidboardWeb.ViewHelper
       alias LucidboardWeb.Router.Helpers, as: Routes
     end
   end
