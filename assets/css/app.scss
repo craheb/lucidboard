@@ -1,23 +1,21 @@
 $fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
-@import "../node_modules/@fortawesome/fontawesome-free/scss/brands";
+
+@font-face {
+  font-family: "Arsenal";
+  src: url(/fonts/Arsenal-Regular.ttf) format("truetype");
+}
 
 @import "../node_modules/bulmaswatch/journal/variables";
 $family-primary: "Arsenal";
-$family-heading: "Volkhov";
-// $family-primary: 'Barlow Semi Condensed';
-// $family-secondary: 'Barlow Semi Condensed';
+$family-heading: "Arsenal";
 @import "bulma";
 @import "../node_modules/bulmaswatch/journal/overrides";
 
 main { padding-top: 2em; }
 .cardspacer { margin-bottom: 1em; }
-.pile { padding: 0.2em 0.2em 0 0.2em; }
 
 a:hover .card { background-color: $light; }
-.card-footer { border-top: none; background-color: transparent; }
 .pile { @extend .has-background-light; }
-.card-count { color: $grey-light; }
 form .field:not(:last-child) { margin-bottom: 2em; }
-// .card-footer a { color: }

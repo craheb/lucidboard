@@ -9,7 +9,7 @@
       <% end %>
       <div class="columns">
         <div class="column">
-          <span class="card-count">
+          <span class="has-text-grey-light">
             <%= show_card_count(column) %>
           </span>
         </div>

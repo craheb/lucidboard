@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Lucidboard</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
-    <link href="https://fonts.googleapis.com/css?family=Arsenal|Volkhov" rel="stylesheet">
+    <link href="<%= Routes.static_path(@conn, "/fonts/Arsenal-Regular.ttf") %>">
   </head>
   <body>
     <header>
@@ -19,15 +19,20 @@
           </a>
         </div>
         <div class="navbar-burger burger" data-target="navbarLucidboard">
+          <%#
           <span></span>
           <span></span>
           <span></span>
+          %>
         </div>
 
         <div id="navbarLucidboard" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item" href="/">
               Home
+            </a>
+            <a class="navbar-item" href="/create-board">
+              Create Board
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
@@ -64,15 +69,15 @@
             <div class="navbar-item">
               <div class="field is-grouped">
                 <p class="control">
-                  <a class="button" href="#">
+                  <a class="button" href="https://impulsedetroit.net/">
                     <%= fas("carrot") %>
-                    <span>Monkeys!</span>
+                    <span>Impulse Detroit</span>
                   </a>
                 </p>
                 <p class="control">
-                  <a class="button is-primary" href="#">
+                  <a class="button is-primary" href="https://www.laphroaig.com/">
                     <%= fas("glass-whiskey") %>
-                    <span>Drink</span>
+                    <span>Laphroaig</span>
                   </a>
                 </p>
               </div>
