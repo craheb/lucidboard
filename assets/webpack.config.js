@@ -17,6 +17,7 @@ module.exports = (env, options) => ({
     'cyborg': ['./css/cyborg.scss'],
     'slate': ['./css/slate.scss'],
     'spacelab': ['./css/spacelab.scss'],
+    'pulse': ['./css/pulse.scss'],
   },
   output: {
     filename: '[name].js',

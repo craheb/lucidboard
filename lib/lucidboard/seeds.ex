@@ -91,10 +91,6 @@ defmodule Lucidboard.Seeds do
               pos: 0,
               cards: [Card.new(pos: 0, body: "that whole free market thing")]
             ),
-            Pile.new(
-              pos: 2,
-              cards: [Card.new(pos: 0, body: "projected habitability")]
-            )
           ]
         ),
         Column.new(
