@@ -25,15 +25,10 @@ defmodule LucidboardWeb.BoardController do
   end
 
   def create(conn, %{"title" => title, "template" => template}) do
-    # Temporary cruft
-    import Ecto.Query
-    alias Lucidboard.{Repo, User}
-    user = Repo.one(from(User, limit: 1))
-
     columns =
       Enum.map(@templates[template].columns, fn c -> Column.new(title: c) end)
 
-    board = Board.new(title: title, columns: columns, user: user)
+    board = Board.new(title: title, columns: columns, user: conn.assigns[:user])
 
     with {:ok, %Board{id: id}} <- Twiddler.insert(board) do
       {:see_other, Routes.board_path(conn, :index, id)}

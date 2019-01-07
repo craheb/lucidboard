@@ -23,6 +23,10 @@ config :lucidboard, :templates, %{
   }
 }
 
+config :lucidboard, :default_theme, "spacelab"
+
+config :lucidboard, :themes, ~w(spacelab cyborg slate)
+
 config :phoenix, :json_library, Jason
 
 # Configures Elixir's Logger

@@ -13,10 +13,13 @@ module.exports = (env, options) => ({
     ],
   },
   entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js')),
+    'app': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js')),
+    'cyborg': ['./css/cyborg.scss'],
+    'slate': ['./css/slate.scss'],
+    'spacelab': ['./css/spacelab.scss'],
   },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '../priv/static/js'),
   },
   module: {
@@ -42,14 +45,16 @@ module.exports = (env, options) => ({
             loader: 'file-loader',
             options: {
                 name: '[name].[ext]',
-                outputPath: '../fonts/'
+                outputPath: '../fonts/',
             }
         }]
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+    new MiniCssExtractPlugin({
+      filename: '../css/[name].css',
+    }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
   ],
 });

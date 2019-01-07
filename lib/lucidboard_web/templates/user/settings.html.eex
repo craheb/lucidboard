@@ -8,7 +8,7 @@
     <label class="label">Theme</label>
     <div class="control">
       <div class="select">
-        <%= select(f, :theme, @themes) %>
+        <%= select(f, :theme, @themes, selected: @user.settings.theme) %>
       </div>
     </div>
   </div>

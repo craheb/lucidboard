@@ -1,6 +1,9 @@
 defmodule LucidboardWeb.UserController do
   use LucidboardWeb, :controller
-  alias Lucidboard.{Repo, User}
+  alias Ecto.Changeset
+  alias Lucidboard.{Repo, User, UserSettings}
+
+  @themes Application.get_env(:lucidboard, :themes)
 
   def signin(conn, _params) do
     render(conn, "signin.html")
@@ -14,13 +17,15 @@ defmodule LucidboardWeb.UserController do
   end
 
   def settings(conn, _params) do
-    themes = ["Red", "Blue", "Green"]
-    render(conn, "settings.html", user: conn.assigns[:user], themes: themes)
+    render(conn, "settings.html", user: conn.assigns[:user], themes: @themes)
   end
 
   def update_settings(conn, params) do
-    with %{valid?: true} = cs <- User.changeset(conn.assigns[:user], params),
-         {:ok, new_user} <- Repo.update(cs) do
+    with %{valid?: true} = u_cs <-
+           conn.assigns.user
+           |> User.changeset(%{"settings" => params})
+           |> Changeset.cast_embed(:settings),
+         {:ok, new_user} <- Repo.update(u_cs) |> IO.inspect() do
       conn
       |> assign(:user, new_user)
       |> put_flash(:info, "Your settings have been saved.")
