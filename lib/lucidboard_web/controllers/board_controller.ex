@@ -3,8 +3,6 @@ defmodule LucidboardWeb.BoardController do
   alias Lucidboard.{Board, Column, Twiddler}
   alias LucidboardWeb.Router.Helpers, as: Routes
 
-  action_fallback(LucidboardWeb.FallbackController)
-
   @templates Application.get_env(:lucidboard, :templates)
 
   def index(conn, %{"id" => board_id}) do

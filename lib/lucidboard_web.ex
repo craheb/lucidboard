@@ -20,10 +20,11 @@ defmodule LucidboardWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: LucidboardWeb
-
       import Plug.Conn
       import LucidboardWeb.Gettext
       alias LucidboardWeb.Router.Helpers, as: Routes
+
+      action_fallback(LucidboardWeb.FallbackController)
     end
   end
 

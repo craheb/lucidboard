@@ -1,5 +1,6 @@
 defmodule LucidboardWeb.UserController do
   use LucidboardWeb, :controller
+  alias Lucidboard.{Repo, User}
 
   def signin(conn, _params) do
     render(conn, "signin.html")
@@ -13,12 +14,18 @@ defmodule LucidboardWeb.UserController do
   end
 
   def settings(conn, _params) do
-    case conn.assigns[:user] do
-      nil ->
-        {:see_other, Routes.user_path(conn, :signin)}
+    themes = ["Red", "Blue", "Green"]
+    render(conn, "settings.html", user: conn.assigns[:user], themes: themes)
+  end
 
-      user ->
-        render(conn, "settings.html", user: user)
+  def update_settings(conn, params) do
+    with %{valid?: true} = cs <- User.changeset(conn.assigns[:user], params),
+         {:ok, new_user} <- Repo.update(cs) do
+      conn
+      |> assign(:user, new_user)
+      |> put_flash(:info, "Your settings have been saved.")
+      |> put_status(:see_other)
+      |> redirect(to: Routes.user_path(conn, :settings))
     end
   end
 end
