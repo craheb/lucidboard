@@ -11,12 +11,17 @@
     </a>
   </header>
   -->
-  <div class="card-content">
+  <div
+    class="card-content"
+    <%= if @enter_submit?, do: ~s(phx-keydown="keydown" phx-target="window") |> raw %>>
     <%= cond do %>
     <% @locked_by_user? -> %>
       <%= form_for @card_changeset, "#", [phx_submit: :card_save], fn f -> %>
       <%= textarea f, :body %>
       <%= error_tag f, :body %>
+      <%= if @enter_submit? do %>
+have to do enter submit
+      <% end %>
       <div>
         <%= submit "Save", phx_disable_with: "Saving..." %>
         <%= submit "Cancel", phx_click: :card_cancel %>

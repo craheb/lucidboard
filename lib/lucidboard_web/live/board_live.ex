@@ -29,6 +29,7 @@ defmodule LucidboardWeb.BoardLive do
         socket =
           socket
           |> assign(:board, board)
+          |> assign(:enter_submit?, true)
           |> assign(:user, Seeds.get_user())
 
         {:ok, socket}
@@ -65,6 +66,7 @@ defmodule LucidboardWeb.BoardLive do
   end
 
   def handle_event("card_save", form_data, socket) do
+    IO.inspect form_data
     socket =
       case Card.changeset(socket.assigns.card, form_data["card"]) do
         %{valid?: true} = changeset ->
@@ -76,6 +78,27 @@ defmodule LucidboardWeb.BoardLive do
         invalid_changeset ->
           assign(socket, card_changeset: invalid_changeset)
       end
+
+    {:noreply, socket}
+  end
+
+  def handle_event("keydown", val, socket) do
+    IO.inspect {val, socket}
+
+    if val == "Enter" do
+      IO.puts "save card.. but how to get card?"
+    end
+    # socket =
+    #   case Card.changeset(socket.assigns.card, form_data["card"]) do
+    #     %{valid?: true} = changeset ->
+    #       card = Changeset.apply_changes(changeset)
+    #       action = {:update_card, %{id: card.id, body: card.body}}
+    #       {:ok, _} = LiveBoard.call(socket.assigns.board.id, {:action, action})
+    #       finish_card_edit(socket)
+
+    #     invalid_changeset ->
+    #       assign(socket, card_changeset: invalid_changeset)
+    #   end
 
     {:noreply, socket}
   end
