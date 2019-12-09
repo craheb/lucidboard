@@ -12,7 +12,7 @@ defmodule LucidboardWeb.AuthController do
   plug(Ueberauth)
 
   def request(conn, _params) do
-    render(conn, "request.html", callback_url: Helpers.callback_url(conn))
+    render(conn, "request.html", callback_url: Helpers.callback_url(conn), callback_params: %{"board_id" => "1"})
   end
 
   def dumb_signin(conn, %{
@@ -58,13 +58,15 @@ defmodule LucidboardWeb.AuthController do
     |> redirect(to: "/")
   end
 
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{
+    "board_id" => board_id
+  }) do
     case Account.auth_to_user(auth) do
       {:ok, user} ->
         conn
         |> put_session(:user_id, user.id)
         |> put_flash(:info, "Hello, #{user.name}!")
-        |> redirect(to: Routes.live_path(conn, DashboardLive))
+        |> redirect(to: get_redirect_path(conn, board_id))
 
       {:error, reason} ->
         conn

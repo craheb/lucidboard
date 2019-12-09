@@ -99,7 +99,7 @@ defmodule LucidboardWeb.ViewHelper do
 
         :pingfed ->
           ~E"""
-          <a class="button lb-button is-primary" href="/auth/pingfed">
+          <a class="button lb-button is-primary" href="/auth/pingfed?board_id=1">
             <span>Sign in with PingFed</span>
           </a>
           """
