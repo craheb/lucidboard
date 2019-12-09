@@ -7,13 +7,14 @@ defmodule LucidboardWeb.UserController do
 
   @themes Application.get_env(:lucidboard, :themes)
 
-  def signin(conn, _params) do
+  def signin(conn, params) do
     if signed_in?(conn) do
       conn
       |> put_status(:see_other)
       |> redirect(to: Routes.live_path(conn, DashboardLive))
     else
-      render(conn, "signin.html")
+      board_id = Map.get(params, "board_id", nil)
+      render(conn, "signin.html", board_id: board_id)
     end
   end
 

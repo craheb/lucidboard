@@ -5,6 +5,7 @@ defmodule LucidboardWeb.AuthController do
   use LucidboardWeb, :controller
   alias Lucidboard.Account
   alias LucidboardWeb.DashboardLive
+  alias LucidboardWeb.BoardLive
   alias LucidboardWeb.Router.Helpers, as: Routes
   alias Ueberauth.Strategy.Helpers
 
@@ -14,10 +15,15 @@ defmodule LucidboardWeb.AuthController do
     render(conn, "request.html", callback_url: Helpers.callback_url(conn))
   end
 
-  def dumb_signin(conn, %{"signin" => %{"username" => username}}) do
+  def dumb_signin(conn, %{
+        "signin" => %{"username" => username},
+        "board_id" => board_id
+      }) do
     if Lucidboard.auth_provider() != :dumb do
       {:error, :not_found}
     else
+      redirect_path = get_redirect_path(conn, board_id)
+
       case Account.by_username(username) do
         nil ->
           {:ok, user} =
@@ -28,13 +34,13 @@ defmodule LucidboardWeb.AuthController do
           |> put_flash(:info, """
           We've created your account and you're now signed in!
           """)
-          |> redirect(to: Routes.live_path(conn, DashboardLive))
+          |> redirect(to: redirect_path)
 
         user ->
           conn
           |> put_session(:user_id, user.id)
           |> put_flash(:info, "You have successfully signed in!")
-          |> redirect(to: Routes.live_path(conn, DashboardLive))
+          |> redirect(to: redirect_path)
       end
     end
   end
@@ -65,5 +71,11 @@ defmodule LucidboardWeb.AuthController do
         |> put_flash(:error, reason)
         |> redirect(to: "/")
     end
+  end
+
+  defp get_redirect_path(conn, board_id) do
+    if is_nil(board_id),
+      do: Routes.live_path(conn, DashboardLive),
+      else: Routes.live_path(conn, BoardLive, board_id)
   end
 end

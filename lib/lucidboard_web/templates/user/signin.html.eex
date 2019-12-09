@@ -19,6 +19,8 @@
           <%= text_input f, :username, class: "form-control", placeholder: "Username", required: true, autofocus: true %>
         </div>
 
+        <input type="hidden" name="board_id" value="<%= @board_id %>">
+
         <%= submit "Sign in" %>
       <% end %>
     </div>
