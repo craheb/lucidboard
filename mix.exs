@@ -62,7 +62,8 @@ defmodule Lucidboard.MixProject do
       {:timex, "~> 3.1"},
       {:scrivener_ecto, "~> 2.0"},
       {:ecto_enum, "~> 1.2"},
-      {:earmark, "~> 1.3.5"}
+      {:earmark, "~> 1.3.5"},
+      {:hackney, github: "benoitc/hackney", override: true}
     ]
   end
 
